@@ -5,22 +5,13 @@ import {Money} from "./components/money";
 function App() {
 
 
-    const callBackFoo1 = (subscriberName1: string) => {
-        console.log(subscriberName1)
+    const callBackFoo = (subscriberName: string) => {
+        console.log(subscriberName)
     }
-    const callBackFoo2 = (subscriberName2: string) => {
-        console.log(subscriberName2)
-    }
-    const callBackFoo3 = () => {
-        console.log('im stupid button')
-    }
-
 
     let [a, setA] = useState(1)
 
     const callBackIncreaseA = () => {
-        // setA((prev) => prev + 1);
-
         setA(++a)
         console.log(a)
     }
@@ -57,18 +48,18 @@ function App() {
     //     )
     // })
 
-
     return (
         <>
             <h1>{a}</h1>
-            <Button callBack={() => callBackFoo1('Vasia')} buttonName={'Channel-1'}/>
-            <Button callBack={() => callBackFoo2('Ivan')} buttonName={'Channel-2'}/>
-            <Button callBack={callBackFoo3} buttonName={'Stupid'}/>
             <Button callBack={callBackIncreaseA} buttonName={'a+'}/>
             <Button callBack={callBack0} buttonName={'0'}/>
+            <br/>
+            <br/>
+            <Button callBack={() => callBackFoo('Vasia')} buttonName={'Channel-1'}/>
+            <Button callBack={() => callBackFoo('Ivan')} buttonName={'Channel-2'}/>
+            <Button callBack={() => callBackFoo('Stupid')} buttonName={'Stupid'}/>
 
             <Money money={money}/>
-
         </>
     );
 }

@@ -10,7 +10,6 @@ type moneyPropsType = {
 }
 
 export const Money = (props: moneyPropsType) => {
-    console.log(props)
     let money = props.money
 
     const [filter, setFilter] = useState<'all' | 'ruble' | 'dollar'>('all')
