@@ -1,100 +1,119 @@
 import React, {useState} from 'react';
-// import {Button} from './components/Button';
-// import {Money} from './components/money';
-import {FullInput} from './components/FullInput';
-import {Button} from './components/Button';
-import {Input} from './components/Input';
+import './App.css';
+import {Todolist} from './Todolist';
+import {v1} from 'uuid';
+
+export type FilterValuesType = 'all' | 'active' | 'completed';
+
+export type TaskType = {
+    id: string
+    title: string
+    isDone: boolean
+}
+
+export type tasksType = {
+    [key: string]: TaskType[]
+}
+
+type todolistsType = {
+    id: string
+    title: string
+    filter: FilterValuesType
+}
 
 function App() {
-    console.log('app')
-    //
-    // const callBackFoo = (subscriberName: string) => {
-    //     console.log(subscriberName)
-    // }
-    //
-    // let [a, setA] = useState(1)
-    //
-    // const callBackIncreaseA = () => {
-    //     setA(++a)
-    //     console.log(a)
-    // }
-    // const callBack0 = () => {
-    //     setA(0)
-    //     console.log(a)
-    // }
-    //
-    // const money = [
-    //     {banknots: 'Dollars', value: 100, number: ' a1234567890'},
-    //     {banknots: 'Dollars', value: 50, number: ' z1234567890'},
-    //     {banknots: 'RUBLS', value: 100, number: ' w1234567890'},
-    //     {banknots: 'Dollars', value: 100, number: ' e1234567890'},
-    //     {banknots: 'Dollars', value: 50, number: ' c1234567890'},
-    //     {banknots: 'RUBLS', value: 100, number: ' r1234567890'},
-    //     {banknots: 'Dollars', value: 50, number: ' x1234567890'},
-    //     {banknots: 'RUBLS', value: 50, number: ' v1234567890'},
-    // ]
-    //
-    // const [filteredMoney, setFilteredMoney] = useState(money)
-    //
-    // const filterMoney = (filter: string) => {
-    //     setFilteredMoney(money.filter(el => el.banknots === filter))
-    //     if (filter === 'all') {
-    //         setFilteredMoney(money)
-    //     }
-    // }
-    //
-    // const moneyFromMap = filteredMoney.map((el, ind) => {
-    //     return (
-    //         <li key={ind}>
-    //             {el.banknots} {el.value} {el.number}
-    //         </li>
-    //     )
-    // })
 
-    const [messages, setMessages] = useState([
-        {message: 'message1'},
-        {message: 'message2'},
-        {message: 'message3'},
+    // let [tasks, setTasks] = useState([
+    //     {id: v1(), title: "HTML&CSS", isDone: true},
+    //     {id: v1(), title: "JS", isDone: true},
+    //     {id: v1(), title: "ReactJS", isDone: false},
+    //     {id: v1(), title: "Rest API", isDone: false},
+    //     {id: v1(), title: "GraphQL", isDone: false},
+    // ]);
+    // let [filter, setFilter] = useState<FilterValuesType>("all");
+
+    let todolistID1 = v1();
+    let todolistID2 = v1();
+
+
+    let [todolists, setTodolists] = useState<Array<todolistsType>>([
+        {id: todolistID1, title: 'What to learn', filter: 'all'},
+        {id: todolistID2, title: 'What to buy', filter: 'all'},
     ])
 
-    const messagesTexts = messages.map((m, i) => {
-        return (
-            <p key={i}>  {m.message} </p>
-        )
-    })
+    let [tasks, setTasks] = useState<tasksType>({
+        [todolistID1]: [
+            {id: v1(), title: 'HTML&CSS', isDone: true},
+            {id: v1(), title: 'JS', isDone: true},
+            {id: v1(), title: 'ReactJS', isDone: false},
+            {id: v1(), title: 'Rest API', isDone: false},
+            {id: v1(), title: 'GraphQL', isDone: false},
+        ],
+        [todolistID2]: [
+            {id: v1(), title: 'HTML&CSS2', isDone: true},
+            {id: v1(), title: 'JS2', isDone: true},
+            {id: v1(), title: 'ReactJS2', isDone: false},
+            {id: v1(), title: 'Rest API2', isDone: false},
+            {id: v1(), title: 'GraphQL2', isDone: false},
+        ]
+    });
 
-    const addMessage = (text: string) => {
-        setMessages([{message: text}, ...messages])
+
+    function removeTask(id: string) {
+        // let filteredTasks = tasks.filter(t => t.id != id);
+        // setTasks(filteredTasks);
     }
 
-    const [text, setText] = useState<string>('')
+    function addTask(title: string) {
+        // let task = {id: v1(), title: title, isDone: false};
+        // let newTasks = [task, ...tasks];
+        // setTasks(newTasks);
+    }
+
+    function changeStatus(taskId: string, isDone: boolean) {
+        // let task = tasks.find(t => t.id === taskId);
+        // if (task) {
+        //     task.isDone = isDone;
+        // }
+        //
+        // setTasks([...tasks]);
+    }
 
 
-    const callBack = () => {
-        addMessage(text)
-        setText('')
+    // if (filter === "active") {
+    //     tasksForTodolist = tasks.filter(t => t.isDone === false);
+    // }
+    // if (filter === "completed") {
+    //     tasksForTodolist = tasks.filter(t => t.isDone === true);
+    // }
+
+    function changeFilter(value: FilterValuesType) {
+        // setFilter(value);
     }
 
 
     return (
-        <>
-            {/*<FullInput addMessage={addMessage}/>*/}
-            <Input value={text} setText={setText}/>
-            <Button callBack={callBack} buttonName={'+'}/>
-            {/*<FullInput messages={messages} setMessages={setMessages}/>*/}
-            {messagesTexts}
+        <div className="App">
+            {todolists.map(el => {
+                let tasksForTodolist = tasks[el.id]
 
-            {/*<h1>{a}</h1>*/}
-            {/*<Button callBack={callBackIncreaseA} buttonName={'a+'}/>*/}
-            {/*<Button callBack={callBack0} buttonName={'0'}/>*/}
-            {/*<br/>*/}
-            {/*<br/>*/}
-            {/*<Button callBack={() => callBackFoo('Vasia')} buttonName={'Channel-1'}/>*/}
-            {/*<Button callBack={() => callBackFoo('Ivan')} buttonName={'Channel-2'}/>*/}
-            {/*<Button callBack={() => callBackFoo('Stupid')} buttonName={'Stupid'}/>*/}
+                return (
+                    <Todolist
+                        key={el.id}
+                        id={el.id}
+                        title={el.title}
+                        tasks={tasksForTodolist}
+                        removeTask={removeTask}
+                        changeFilter={changeFilter}
+                        addTask={addTask}
+                        changeTaskStatus={changeStatus}
+                        filter={el.filter}
+                    />
+                )
+            })}
 
-            {/*<Money money={money}/>*/}
-        </>
+
+        </div>
     );
 }
 
