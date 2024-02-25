@@ -3,7 +3,7 @@ import styles from "./components/Site.module.css";
 import {PageOne} from "./components/pages/PageOne";
 import {PageTwo} from "./components/pages/PageTwo";
 import {PageThree} from "./components/pages/PageThree";
-import {Navigate, Route, Routes} from "react-router-dom";
+import {Navigate, NavLink, Route, Routes} from "react-router-dom";
 import {Error404} from "./components/pages/Error404";
 
 function App() {
@@ -12,7 +12,9 @@ function App() {
             <div className={styles.header}><h1>HEADER</h1></div>
             <div className={styles.body}>
                 <div className={styles.nav}>
-                    Здесь будет навигация
+                    <NavLink to='adidas'>adidas</NavLink>
+                    <NavLink to='puma'>puma</NavLink>
+                    <NavLink to='abibas'>abibas</NavLink>
                 </div>
                 <div className={styles.content}>
                     <Routes>
@@ -20,7 +22,7 @@ function App() {
                         <Route path='puma' element={<PageTwo/>}/>
                         <Route path='abibas' element={<PageThree/>}/>
                         <Route path='404' element={<Error404/>}/>
-                        <Route path='*' element={<Navigate to='404'/>}/>
+                        <Route path='*' element={<Navigate to='page/error'/>}/>
                         <Route path='' element={<Navigate to='puma'/>}/>
                     </Routes>
                 </div>

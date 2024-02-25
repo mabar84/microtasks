@@ -16,7 +16,8 @@
     width: 30%;
     color: #282c34;
     font-size: 30px;
-
+    display: flex;
+    flex-direction: column;
 }
 
 .content {
