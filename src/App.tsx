@@ -6,24 +6,39 @@ import {PageThree} from "./components/pages/PageThree";
 import {Navigate, NavLink, Route, Routes} from "react-router-dom";
 import {Error404} from "./components/pages/Error404";
 
+const PATH = {
+    ADIDAS: 'adidas',
+    PUMA: 'puma',
+    ABIBAS: 'abibas',
+    ERROR404: 'page/error404'
+} as const
+
 function App() {
     return (
         <div>
             <div className={styles.header}><h1>HEADER</h1></div>
             <div className={styles.body}>
                 <div className={styles.nav}>
-                    <NavLink className={({isActive}) => isActive ? styles.active : ""} to='adidas'>adidas</NavLink>
-                    <NavLink className={({isActive}) => isActive ? styles.active : ""} to='puma'>puma</NavLink>
-                    <NavLink className={({isActive}) => isActive ? styles.active : ""} to='abibas'>abibas</NavLink>
+                    <NavLink className={({isActive}) => isActive ? styles.active : ""}
+                             to={PATH.ADIDAS}>{PATH.ADIDAS}</NavLink>
+                    <NavLink className={({isActive}) => isActive ? styles.active : ""}
+                             to={PATH.PUMA}>{PATH.PUMA}</NavLink>
+                    <NavLink className={({isActive}) => isActive ? styles.active : ""}
+                             to={PATH.ABIBAS}>{PATH.ABIBAS}</NavLink>
                 </div>
                 <div className={styles.content}>
                     <Routes>
-                        <Route path='adidas' element={<PageOne/>}/>
-                        <Route path='puma' element={<PageTwo/>}/>
-                        <Route path='abibas' element={<PageThree/>}/>
-                        <Route path='404' element={<Error404/>}/>
-                        <Route path='*' element={<Navigate to='page/error'/>}/>
-                        <Route path='' element={<Navigate to='puma'/>}/>
+                        <Route path={PATH.ADIDAS} element={<PageOne/>}/>
+                        <Route path={PATH.PUMA} element={<PageTwo/>}/>
+                        <Route path={PATH.ABIBAS} element={<PageThree/>}/>
+
+                        {/*<Route path={PATH.ERROR404} element={<Error404/>}/>*/}
+                        {/*<Route path='*' element={<Navigate to='page/error404'/>}/>*/}
+                        
+                        <Route path={'*'} element={<Error404/>}/>
+
+
+                        <Route path='' element={<Navigate to={PATH.PUMA}/>}/>
                     </Routes>
                 </div>
             </div>
