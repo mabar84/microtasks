@@ -12,9 +12,9 @@ function App() {
             <div className={styles.header}><h1>HEADER</h1></div>
             <div className={styles.body}>
                 <div className={styles.nav}>
-                    <NavLink to='adidas'>adidas</NavLink>
-                    <NavLink to='puma'>puma</NavLink>
-                    <NavLink to='abibas'>abibas</NavLink>
+                    <NavLink className={({isActive}) => isActive ? styles.active : ""} to='adidas'>adidas</NavLink>
+                    <NavLink className={({isActive}) => isActive ? styles.active : ""} to='puma'>puma</NavLink>
+                    <NavLink className={({isActive}) => isActive ? styles.active : ""} to='abibas'>abibas</NavLink>
                 </div>
                 <div className={styles.content}>
                     <Routes>
