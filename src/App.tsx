@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from "./components/Site.module.css";
-import {PageOne} from "./components/pages/PageOne";
-import {PageTwo} from "./components/pages/PageTwo";
-import {PageThree} from "./components/pages/PageThree";
+import {Adidas} from "./components/pages/AdidasArr";
+import {Puma} from "./components/pages/Puma";
+import {Abibas} from "./components/pages/Abibas";
 import {Navigate, NavLink, Route, Routes} from "react-router-dom";
 import {Error404} from "./components/pages/Error404";
+import {Model} from "./components/pages/Model";
 
 const PATH = {
     ADIDAS: 'adidas',
@@ -25,16 +26,21 @@ function App() {
                              to={PATH.PUMA}>{PATH.PUMA}</NavLink>
                     <NavLink className={({isActive}) => isActive ? styles.active : ""}
                              to={PATH.ABIBAS}>{PATH.ABIBAS}</NavLink>
+
                 </div>
                 <div className={styles.content}>
                     <Routes>
-                        <Route path={PATH.ADIDAS} element={<PageOne/>}/>
-                        <Route path={PATH.PUMA} element={<PageTwo/>}/>
-                        <Route path={PATH.ABIBAS} element={<PageThree/>}/>
+                        <Route path={PATH.ADIDAS} element={<Adidas/>}/>
+                        <Route path={PATH.PUMA} element={<Puma/>}/>
+                        <Route path={PATH.ABIBAS} element={<Abibas/>}/>
+
+
+                        <Route path='adidas/:id' element={<Model/>}/>
+
 
                         {/*<Route path={PATH.ERROR404} element={<Error404/>}/>*/}
                         {/*<Route path='*' element={<Navigate to='page/error404'/>}/>*/}
-                        
+
                         <Route path={'*'} element={<Error404/>}/>
 
 

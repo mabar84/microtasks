@@ -1,0 +1,20 @@
+.pictures {
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 10px;
+}
+
+.pictures a {
+    max-width: 30%;
+    display: block;
+}
+
+.pictures a img {
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
