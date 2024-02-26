@@ -1,9 +1,23 @@
 import React from 'react';
+import {ShoesItem} from "../../App";
+import {Link} from "react-router-dom";
+import s from "./Shoes.module.css";
 
-export const Abibas = () => {
+type Props = {
+    brand: string
+    shoesItems?: ShoesItem[]
+
+}
+export const Shoes = ({shoesItems, brand}: Props) => {
     return (
         <div>
-            <h2> ABIBAS</h2>
+            <h2> {brand}</h2>
+            <div className={s.pictures}>
+                {shoesItems?.map((el) =>
+                    (<Link key={el.id} to={`${el.id}`}>
+                        <img src={el.picture} alt={el.model}/>
+                    </Link>))}
+            </div>
             <p>
                 What is Lorem Ipsum?
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
